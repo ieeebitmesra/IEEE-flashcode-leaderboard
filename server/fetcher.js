@@ -2,6 +2,8 @@ const fetch = require("node-fetch-commonjs");
 const cron = require("node-cron");
 const CacheFactory = require("./cache");
 
+const languageMultipliers = require("./language-multipliers.json");
+
 let cache;
 
 async function getSubmissions(contestName, sessionCookie, limit) {
