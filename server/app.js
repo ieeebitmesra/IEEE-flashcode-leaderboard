@@ -6,6 +6,9 @@ const morgan = require("morgan");
 const createHttpError = require("http-errors");
 const xssClean = require("xss-clean");
 const cors = require("cors");
+const dotenv = require("dotenv");
+
+dotenv.config()
 
 const app = express();
 app.use(
