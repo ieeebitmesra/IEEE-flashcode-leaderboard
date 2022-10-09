@@ -4,37 +4,40 @@
 import Leaderboard from "../../../components/Leaderboard.js";
 
 export default function Home({ data }) {
-	return (
-		<div>
-			<Leaderboard data={data} />
-		</div>
-	);
+  if (data.page != []) {
+    // Data exists
+    return (
+      <div className="px-4 md:px-12 pt-8">
+        <Leaderboard data={data} />
+      </div>
+    );
+  }
 }
 
 export const getStaticProps = async (context) => {
-	const res = await fetch(`http://localhost:8080/?page=${context.params.id}`);
-	const data = await res.json();
-
-	return {
-		props: {
-			data,
-		},
-	};
+  const res = await fetch(`http://localhost:8080/?page=${context.params.id}`);
+  const data = await res.json();
+  return {
+    props: {
+      data,
+    },
+  };
 };
 
 export const getStaticPaths = async () => {
-	let paths = [];
+  let paths = [];
 
-	// hardcode
-	let number_of_pages = 10;
-	for (let i = 1; i <= number_of_pages; i++) {
-		paths.push({
-			params: { id: i.toString() },
-		});
-	}
-
-	return {
-		paths,
-		fallback: false,
-	};
+  // hardcode
+  const res = await fetch(`http://localhost:8080/?page=1`);
+  const data = await res.json();
+  const numberOfPages = data.numberOfPages;
+  for (let i = 1; i <= numberOfPages; i++) {
+    paths.push({
+      params: { id: i.toString() },
+    });
+  }
+  return {
+    paths,
+    fallback: false,
+  };
 };
