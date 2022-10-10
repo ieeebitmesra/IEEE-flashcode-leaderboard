@@ -21,6 +21,9 @@ export const getStaticProps = async (context) => {
     props: {
       data,
     },
+    // Revalidate ie re-fetch the data at max once in every 10 seconds,
+    // on any request
+    revalidate: 10,
   };
 };
 
