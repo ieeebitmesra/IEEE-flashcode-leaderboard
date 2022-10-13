@@ -47,6 +47,7 @@ const Leaderboard = ({ data }) => {
                         <th
                           scope="col"
                           className="text-sm font-medium text-gray-900 px-6 py-4 text-center border-l border-gray-200 dark:border-gray-700 dark:text-white"
+                          key={index}
                         >
                           {index + 1}
                         </th>
@@ -57,7 +58,7 @@ const Leaderboard = ({ data }) => {
               </thead>
               <tbody>
                 {users.length > 0 &&
-                  users.map((user) => <User key={nanoid()} user={user} />)}
+                  users.map((user) => <User key={user.name} user={user} />)}
               </tbody>
             </table>
           </div>
