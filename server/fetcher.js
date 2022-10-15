@@ -93,7 +93,6 @@ function UserFactory(name) {
 	let total_score = 0;
 	let total_penalty = 0;
 	const problems = {};
-	const used_langs = new Set();
 
 	for (const problem of problemList) {
 		problems[problem.name] = ProblemFactory(problem.name);
@@ -109,7 +108,7 @@ function UserFactory(name) {
 		}
 
 		const problem_name = submission.challenge.name;
-		if (submission.status !== "Accepted" || used_langs.has(submission.language)) {
+		if (submission.status !== "Accepted") {
 			problems[problem_name].verdict = "Failed";
 			problems[problem_name].failed_attempts++;
 		} else {
@@ -118,7 +117,6 @@ function UserFactory(name) {
 
 			problems[problem_name].problem_score = submission.score;
 			problems[problem_name].lang = submission.language;
-			used_langs.add(submission.language);
 
 			if (!(submission.language in languageMultipliers)) {
 				console.error(`${submission.language} multiplier not found!`);
