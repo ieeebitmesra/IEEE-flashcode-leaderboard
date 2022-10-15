@@ -34,7 +34,7 @@ export default function Home({ data }) {
     }, [router, isLocked]);
     return (
       <div className="sm:px-12 pt-8">
-        <div className="font-bold text-gray-900 dark:text-white text-2xl my-2 text-center">
+        <div className="font-bold text-gray-900 dark:text-white text-lg my-2 text-center">
           Page {curpage}
         </div>
         <Leaderboard data={data} />
